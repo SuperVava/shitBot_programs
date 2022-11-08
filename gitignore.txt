@@ -1,2 +1,0 @@
-log.py
-_pycache_
