@@ -22,6 +22,7 @@ try:
 
 except:
     print("Connection error...")
+    exit()
 
 #main loop
 while True:
@@ -46,7 +47,8 @@ while True:
             try:
                 tweets = api.search_tweets(q= word, lang= 'fr', count= 100)
                 print("searching word " + word)
-            except:
+            except Exception as e:
+                print(e)
                 print("search error, stop collecting tweets.")
                 break
             #for every result
@@ -54,7 +56,7 @@ while True:
                 #split each word
                 text = str(tweet.text).split(' ')
                 #if the tweet is long enough and contain the wrd in the right place
-                if len(text) > wordNumber and text[wordNumber] == word:
+                if len(text) > wordNumber and text[wordNumber] == word and tweet.truncated == False:
                     try:
                         #don't use the same tweet twice
                         if oldTweetId == tweet.id:
