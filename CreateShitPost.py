@@ -45,7 +45,7 @@ while True:
             isAnyTweetLeft = False;
             #searching tweets with the previous word in the message (begginin with 'je')
             try:
-                tweets = api.search_tweets(q= word, lang= 'fr', count= 100)
+                tweets = api.search_tweets(q= word, lang= 'fr', count= 100, tweet_mode= 'extended')
                 print("searching word " + word)
             except Exception as e:
                 print(e)
@@ -54,9 +54,9 @@ while True:
             #for every result
             for tweet in tweets:
                 #split each word
-                text = str(tweet.text).split(' ')
+                text = str(tweet.full_text).split(' ')
                 #if the tweet is long enough and contain the wrd in the right place
-                if len(text) > wordNumber and text[wordNumber] == word and tweet.truncated == False:
+                if len(text) > wordNumber and text[wordNumber] == word:
                     try:
                         #don't use the same tweet twice
                         if oldTweetId == tweet.id:
