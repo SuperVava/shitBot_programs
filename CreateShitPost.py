@@ -40,7 +40,7 @@ while True:
         oldTweetId = ""
         #while the robot found tweets
         while(isAnyTweetLeft):
-            print("Collecting tweet...")
+            #print("Collecting tweet...")
             #set value to false if the program don't find anny tweet good for use
             isAnyTweetLeft = False;
             #searching tweets with the previous word in the message (begginin with 'je')
@@ -56,21 +56,24 @@ while True:
                 #split each word
                 text = str(tweet.full_text).split(' ')
                 #if the tweet is long enough and contain the wrd in the right place
-                if len(text) > wordNumber and text[wordNumber] == word:
-                    try:
-                        #don't use the same tweet twice
-                        if oldTweetId == tweet.id:
-                            raise Exeption("tweet already quoted.")
-                        #update values of variables
-                        else:
-                            wordNumber += 1
-                            word = text[wordNumber]
-                            print("Tweet found, new word: " + word)
-                            textTweet = textTweet + ' ' + word
-                            isAnyTweetLeft = True
-                            break
-                    except:
-                        print("tweet invalide.")
+                try:
+                    #don't use the same tweet twice
+                    if oldTweetId == tweet.id:
+                        raise Exception("tweet already quoted.")
+                    #update values of variables
+                    elif text.index(word) + 1 > len(text):
+                        raise Exception("tweet too short")
+                    else:
+                        wordNumber += 1
+                        word = text[text.index(word) + 1]
+                        oldTweetId = tweet.id
+                        print("Tweet found: " + tweet.user.screen_name + ": " + tweet.full_text)
+                        print("New word: " + word)
+                        textTweet = textTweet + ' ' + word
+                        isAnyTweetLeft = True
+                        break
+                except Exception as e:
+                    print(e)
         #if there is no tweet left, end loop
         if wordNumber >= 5: isTheTweetGood = True
 
