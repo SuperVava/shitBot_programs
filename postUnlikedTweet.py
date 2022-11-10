@@ -6,11 +6,12 @@ I whant to post every minuts one tweet whitch cotain the word "merde"
 
 import tweepy
 import time
+import log
 
 #connection to the account
-auth = tweepy.OAuthHandler("XMIEkLdfAiJcRAtCDUy7Y268u", "TNKhMNjgfVqHnLJ4PsoJXC5Lrsz9pjcUjABSNj5nHsliXaFZBW")
+auth = tweepy.OAuthHandler(log.getApi("key"), log.getApi("secret"))
 #connection to the app in Twitter developpement
-auth.set_access_token("1588133381665071106-EdRy2HtcUn55wn41G54Vk4XOkmSyCD", "Tn6WoIV6heirjNISdUOKlMu6dgYCSOVKwGJu9YbqR7osa")
+auth.set_access_token(log.getToken("key"), log.getToken("secret"))
 
 api = tweepy.API(auth)
 
