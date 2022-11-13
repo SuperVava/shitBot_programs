@@ -78,8 +78,8 @@ while True:
         if wordNumber >= 5: isTheTweetGood = True
 
     #add the hashtags
-    textTweet = textTweet + '\n#shitpost #déchet #éboueur'
+    textTweet = textTweet + '\n#shitpost #déchet #éboueur #profitonsAvantLeGenocide #epargesNousElon'
     #tweet the shitpost and wait
     print(textTweet)
     api.update_status(textTweet)
-    time.sleep(1800)
+    time.sleep(120)
