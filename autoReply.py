@@ -26,7 +26,7 @@ def autoRep(message, sender):
     randomStart = random.randint(1572221111244554241, lastTweetId)
     randomTweetId = api.user_timeline(user_id = 1572219374647361536, max_id = randomStart, count = 2, include_rts = False)[0].id
     randomCitation = api.get_status(randomTweetId).text
-    api.send_direct_message(sender, "Bonjour! Vous savez que je suis un robot, n'est-ce pas? Je ne vais pas pouvoir vous répondre... En revanche, voici une citation de @PoubelleMentale, mon créateur:\n\"" + randomCitation + "\"\ninspirant, non?")
+    api.send_direct_message(sender, "Bonjour! Vous savez que je suis un robot, n'est-ce pas? Je ne vais pas pouvoir vous répondre... En revanche, comme le dirait @PoubelleMentale, mon créateur:\n\"" + randomCitation + "\"\nInspirant, non?")
 
 
 def update():
